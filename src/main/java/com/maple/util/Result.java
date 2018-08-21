@@ -1,11 +1,13 @@
 package com.maple.util;
 
+import javafx.beans.binding.ObjectExpression;
+
 /**
  * 统一API响应结果封装
  */
 public class Result {
     private int code;
-    private String message;
+    private Object message;
     private Object data;
 
     public Result() {}
@@ -19,11 +21,11 @@ public class Result {
         return this;
     }
 
-    public String getMessage() {
+    public Object getMessage() {
         return message;
     }
 
-    public Result setMessage(String message) {
+    public Result setMessage(Object message) {
         this.message = message;
         return this;
     }

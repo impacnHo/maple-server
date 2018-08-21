@@ -1,5 +1,6 @@
 package com.maple.dao;
 
+import com.maple.dto.ProductItemDTO;
 import com.maple.entity.Product;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +28,7 @@ public class ProductDaoTest {
     @Test
     public void listProduct() throws Exception {
         List<Product> list = new ArrayList<>();
-        list = productDao.listProduct(1, 12);
+        list = productDao.listProduct();
         System.out.println("===Size: " + list.size() + "===");
         for (Product p : list) {
             System.out.println(p.toString());
@@ -37,7 +38,7 @@ public class ProductDaoTest {
     @Test
     public void testsearch() throws Exception {
         List<Product> productList = new ArrayList<>();
-        productList = productDao.listProductByTypeName("鞋履", 1, 12);
+        productList = productDao.listProductByTypeName("鞋履");
         for (Product p : productList) {
             System.out.println(p.toString());
         }
@@ -51,7 +52,16 @@ public class ProductDaoTest {
 
     @Test
     public void testtype() throws Exception {
-        List<Product> products = productDao.listProductByTypeName("鞋履", 1, 12);
+        List<Product> products = productDao.listProductByTypeName("鞋履");
+        for (Product product : products) {
+            System.out.println(product.toString());
+        }
+    }
+
+    @Test
+    public void testSearch() throws Exception {
+        String keyword = "%nike%";
+        List<Product> products = productDao.listProductBySearch(keyword);
         for (Product product : products) {
             System.out.println(product.toString());
         }

@@ -1,5 +1,6 @@
 package com.maple.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.maple.dao.BrandDao;
 import com.maple.dao.ProductDao;
 import com.maple.dao.StockDao;
@@ -26,9 +27,9 @@ public class ProductServiceImpl implements ProductService {
     private BrandDao brandDao;
 
     @Override
-    public List<ProductItemDTO> listProduct(Integer pageNum, Integer pageSize) {
+    public List<ProductItemDTO> listProduct() {
         List<ProductItemDTO> productItemDTOList = new ArrayList<>();
-        List<Product> productList = productDao.listProduct(pageNum, pageSize);
+        List<Product> productList = productDao.listProduct();
         ProductItemDTO productItemDTO;
 
         // pass
@@ -40,8 +41,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductItemDTO> listProductByTypeName(String typeName, Integer pageNum, Integer pageSize) {
-        List<Product> productList = productDao.listProductByTypeName(typeName, pageNum, pageSize);
+    public List<ProductItemDTO> listProductByTypeName(String typeName) {
+        List<Product> productList = productDao.listProductByTypeName(typeName);
         List<ProductItemDTO> productItemDTOList = new ArrayList<>();
         ProductItemDTO productItemDTO;
         for (Product p : productList) {
@@ -52,9 +53,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductItemDTO> listProductBySearch(String keyword, Integer pageNum, Integer pageSize) {
+    public List<ProductItemDTO> listProductBySearch(String keyword) {
         keyword = '%' + keyword + '%';
-        List<Product> productList = productDao.listProductBySearch(keyword, pageNum, pageSize);
+        List<Product> productList = productDao.listProductBySearch(keyword);
         List<ProductItemDTO> productItemDTOList = new ArrayList<>();
         ProductItemDTO productItemDTO;
         for (Product p : productList) {

@@ -10,31 +10,25 @@ public interface ProductService {
     /**
      * 获取商品列表
      *
-     * @param pageNum
-     * @param pageSize
      * @return
      */
-    List<ProductItemDTO> listProduct(Integer pageNum, Integer pageSize);
+    List<ProductItemDTO> listProduct();
 
     /**
      * 分类浏览
      *
      * @param typeName
-     * @param pageNum
-     * @param pageSize
      * @return
      */
-    List<ProductItemDTO> listProductByTypeName(String typeName, Integer pageNum, Integer pageSize);
+    List<ProductItemDTO> listProductByTypeName(String typeName);
 
     /**
      * 搜索浏览
      *
      * @param keyword
-     * @param pageNum
-     * @param pageSize
      * @return
      */
-    List<ProductItemDTO> listProductBySearch(String keyword, Integer pageNum, Integer pageSize);
+    List<ProductItemDTO> listProductBySearch(String keyword);
 
     /**
      * 商品详情

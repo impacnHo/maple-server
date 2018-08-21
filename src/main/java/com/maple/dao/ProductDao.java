@@ -17,7 +17,7 @@ public interface ProductDao {
      * 获取商品详情
      *
      * @param productNum
-     * @return Product
+     * @reutrn
      */
     @Select("SELECT product_num,name,sub_name,lanch_date,descr,price " +
             "FROM product " +
@@ -40,14 +40,12 @@ public interface ProductDao {
             @Result(property = "productNum", column = "product_num"),
             @Result(property = "subName", column = "sub_name")
     })
-    List<Product> listProduct(@Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+    List<Product> listProduct();
 
     /**
      * 分类浏览
      *
      * @param typeName
-     * @param pageNum
-     * @param pageSize
      * @return
      */
     @Select("SELECT product_num,p.name,sub_name,price " +
@@ -58,18 +56,16 @@ public interface ProductDao {
             @Result(property = "name", column = "name"),
             @Result(property = "subName", column = "sub_name")
     })
-    List<Product> listProductByTypeName(@Param("typeName") String typeName, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+    List<Product> listProductByTypeName(@Param("typeName") String typeName);
 
 
     /**
      * 搜索商品
      *
      * @param keyword
-     * @param pageNum
-     * @param pageSize
      * @return
      */
-    @Select("SELECT product_num as productNum,p.name as ,sub_name,price " +
+    @Select("SELECT product_num,p.name,sub_name,price " +
             "FROM product as p,brand as b " +
             "WHERE p.brand_id = b.id AND (p.name LIKE #{keyword} " +
             "OR p.sub_name LIKE #{keyword} " +
@@ -77,10 +73,10 @@ public interface ProductDao {
             "OR b.name LIKE #{keyword})")
     @Results({
             @Result(property = "productNum", column = "product_num"),
-            @Result(property = "name", column = "p.name"),
+            @Result(property = "name", column = "name"),
             @Result(property = "subName", column = "sub_name")
     })
-    List<Product> listProductBySearch(@Param("keyword") String keyword, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+    List<Product> listProductBySearch(@Param("keyword") String keyword);
 
     /**
      * 通过库存id查商品价格

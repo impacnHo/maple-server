@@ -1,5 +1,7 @@
 package com.maple.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.maple.dto.ProductDTO;
 import com.maple.dto.ProductItemDTO;
 import com.maple.dto.StockDTO;
@@ -23,7 +25,10 @@ public class ProductServiceTest {
     @Test
     public void listProduct() {
         List<ProductItemDTO> productItemDTOList = new ArrayList<>();
-        productItemDTOList = productService.listProduct(1, 12);
+        Page pageInfo = PageHelper.startPage(1,12);
+        productItemDTOList = productService.listProduct();
+        System.out.println(pageInfo.toString());
+        System.out.println("=============");
         for (ProductItemDTO p : productItemDTOList) {
             System.out.println(p.toString());
         }
@@ -42,7 +47,7 @@ public class ProductServiceTest {
 
     @Test
     public void listPoroductByTypeName() throws Exception {
-        List<ProductItemDTO> productItemDTOList = productService.listProductByTypeName("鞋履", 1, 12);
+        List<ProductItemDTO> productItemDTOList = productService.listProductByTypeName("鞋履");
         for (ProductItemDTO p : productItemDTOList) {
             System.out.println(p.toString());
         }
@@ -50,7 +55,7 @@ public class ProductServiceTest {
 
     @Test
     public void listPoroductBySearch() throws Exception {
-        List<ProductItemDTO> productItemDTOList = productService.listProductBySearch("nike", 1, 12);
+        List<ProductItemDTO> productItemDTOList = productService.listProductBySearch("nike");
         for (ProductItemDTO p : productItemDTOList) {
             System.out.println(p.toString());
         }
