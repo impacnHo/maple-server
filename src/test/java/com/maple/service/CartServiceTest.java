@@ -1,0 +1,47 @@
+package com.maple.service;
+
+import com.maple.dto.CartDTO;
+import com.maple.dto.CartItemDTO;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class CartServiceTest {
+    @Autowired
+    private CartService cartService;
+
+    @Test
+    public void saveCart() {
+        CartDTO cartDTO = new CartDTO();
+        cartDTO.setUserId(1);
+        cartDTO.setStockId(6);
+        cartDTO.setQuanlity(2);
+        System.out.println(cartService.saveCart(cartDTO));
+    }
+
+    @Test
+    public void deleteCart() {
+        System.out.println(cartService.deleteCart(2));
+    }
+
+    @Test
+    public void updateCart() {
+        System.out.println(cartService.updateCart(1, 1));
+    }
+
+    @Test
+    public void listCart() {
+        List<CartItemDTO> cartItemDTOS = cartService.listCart(1);
+        for (CartItemDTO c : cartItemDTOS) {
+            System.out.println(c.toString());
+        }
+    }
+}

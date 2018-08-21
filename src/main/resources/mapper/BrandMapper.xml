@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.maple.dao.BrandDao">
+
+    <resultMap id="BaseResultMap" type="com.maple.entity.Brand">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <select id="listBrand" resultMap="BaseResultMap">
+      SELECT id,name
+      FROM brand
+    </select>
+
+    <insert id="saveBrand" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO brand(name)
+        VALUES (#{name})
+    </insert>
+
+    <update id="updateBrand">
+        UPDATE brand
+        SET name = #{name}, gmt_modified = now()
+        WHERE id = #{id}
+    </update>
+</mapper>
