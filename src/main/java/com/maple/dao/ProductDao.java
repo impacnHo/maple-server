@@ -24,7 +24,6 @@ public interface ProductDao {
             "WHERE product_num = #{productNum}")
     @Results({
             @Result(property = "productNum", column = "product_num"),
-            @Result(property = "name", column = "p.name"),
             @Result(property = "subName", column = "sub_name"),
             @Result(property = "lanchDate", column = "lanch_date")
     })
