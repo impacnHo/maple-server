@@ -38,11 +38,7 @@ public class ProductServiceTest {
     @Test
     public void getProduct() {
         ProductDTO productDTO = productService.getProduct("142334");
-        List<StockDTO> stockDTOList = productDTO.getSotcks();
         System.out.println(productDTO.toString());
-        for (StockDTO s : stockDTOList) {
-            System.out.println(s.toString());
-        }
     }
 
     @Test

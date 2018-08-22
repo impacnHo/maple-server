@@ -17,7 +17,7 @@ public interface StockDao {
      * @param productNum
      * @return
      */
-    @Select("SELECT s.id AS id,s.name AS name,quanlity AS quanlity" +
+    @Select("SELECT s.id AS id,s.name AS name,quanlity AS quanlity " +
             "FROM stock as s,product as p " +
             "WHERE s.product_id = p.id AND p.product_num = #{productNum}")
     List<Stock> listStock(@Param("productNum") String productNum);
