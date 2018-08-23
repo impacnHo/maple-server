@@ -14,7 +14,7 @@ public class ProductDTO implements Serializable {
     private Date lanchDate;
     private String descr;
     private BigDecimal price;
-    private List<StockDTO> sotcks;
+    private List<StockDTO> stocks;
 
     public String getProductNum() {
         return productNum;
@@ -72,12 +72,12 @@ public class ProductDTO implements Serializable {
         this.price = price;
     }
 
-    public List<StockDTO> getSotcks() {
-        return sotcks;
+    public List<StockDTO> getStocks() {
+        return stocks;
     }
 
-    public void setSotcks(List<StockDTO> sotcks) {
-        this.sotcks = sotcks;
+    public void setStocks(List<StockDTO> stocks) {
+        this.stocks = stocks;
     }
 
     @Override
@@ -90,7 +90,7 @@ public class ProductDTO implements Serializable {
                 ", lanchDate=" + lanchDate +
                 ", descr='" + descr + '\'' +
                 ", price=" + price +
-                ", sotcks=" + sotcks +
+                ", sotcks=" + stocks +
                 '}';
     }
 }

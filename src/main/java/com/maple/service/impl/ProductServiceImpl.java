@@ -91,7 +91,7 @@ public class ProductServiceImpl implements ProductService {
         productDTO.setLanchDate(product.getLanchDate());
         productDTO.setPrice(product.getPrice());
         productDTO.setBrandName(brand.getName());
-        productDTO.setSotcks(stockDTOList);
+        productDTO.setStocks(stockDTOList);
         return productDTO;
     }
 }
