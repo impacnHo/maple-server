@@ -23,6 +23,26 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserConsigneeDao userConsigneeDao;
 
+    @Override
+    public boolean validateUsnFormat(String username) {
+        return username.matches("[0-9A-Za-z]*") && username.length() >= 3 && username.length() <= 10;
+    }
+
+    @Override
+    public boolean validatePwdLength(String pwd) {
+        return pwd.length() >= 10 && pwd.length() <= 20;
+    }
+
+    @Override
+    public boolean isUsnExist(String username) {
+        String result = userRegistryDao.getUsername(username);
+        if ("".equals(result) || null == result) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Integer saveUserRegistry(UserRegistryDTO userRegistryDTO) {

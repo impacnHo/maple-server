@@ -9,6 +9,29 @@ import com.maple.entity.UserRegistry;
 public interface UserService {
 
     /**
+     * 验证用户名格式
+     *
+     * @param username
+     * @return
+     */
+    boolean validateUsnFormat(String username);
+
+    /**
+     * 验证密码长度
+     *
+     * @param pwd
+     * @return
+     */
+    boolean validatePwdLength(String pwd);
+
+    /**
+     * 验证用户名是否存在
+     * @param username
+     * @return
+     */
+    boolean isUsnExist(String username);
+
+    /**
      * 保存用户注册记录并新增用户信息
      *
      * @param userRegistryDTO

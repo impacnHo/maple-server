@@ -1,14 +1,14 @@
 package com.maple.dao;
 
 import com.maple.entity.UserRegistry;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRegistryDao {
+
+    @Select("SELECT username FROM user_registry WHERE username = #{username}")
+    String getUsername(@Param("username") String username);
 
     /**
      * 保存用户

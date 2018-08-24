@@ -4,6 +4,7 @@ import com.maple.dto.UserConsigneeDTO;
 import com.maple.dto.UserInfoDTO;
 import com.maple.dto.UserRegistryDTO;
 import com.maple.entity.UserRegistry;
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,21 @@ public class UserServiceTest {
         userConsigneeDTO.setTel("13102259363");
         userConsigneeDTO.setAddress("gdsfsssdqxxxx");
         System.out.println(userService.updateUserConsignee(userConsigneeDTO));
+    }
+
+    @Test
+    public void validateUsnFormat() {
+        System.out.println(userService.validateUsnFormat("lmp/"));
+    }
+
+    @Test
+    public void validatePwdLength() {
+        System.out.println(userService.validatePwdLength("nmslnmslnmslnmslnmslm"));
+    }
+
+    @Test
+    public void isUsnExist() {
+        System.out.println(userService.isUsnExist("nmsl"));
     }
 
 }
