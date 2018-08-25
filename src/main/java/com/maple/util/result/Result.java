@@ -1,6 +1,4 @@
-package com.maple.util;
-
-import javafx.beans.binding.ObjectExpression;
+package com.maple.util.result;
 
 /**
  * 统一API响应结果封装

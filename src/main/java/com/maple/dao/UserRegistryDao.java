@@ -1,5 +1,6 @@
 package com.maple.dao;
 
+import com.maple.dto.UserRegistryDTO;
 import com.maple.entity.UserRegistry;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -31,4 +32,13 @@ public interface UserRegistryDao {
             "SET pwd = #{newPwd},gmt_modified = now() " +
             "WHERE id = #{id}")
     Integer updatePwd(@Param("id") Integer id, @Param("newPwd") String pwd);
+
+    /**
+     * 通过用户名查询密码
+     *
+     * @param username
+     * @return
+     */
+    @Select("SELECT id,username,pwd FROM user_registry WHERE username = #{username}")
+    UserRegistry getPwdByUsername(@Param("username") String username);
 }

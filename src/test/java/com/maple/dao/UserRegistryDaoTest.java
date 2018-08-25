@@ -1,5 +1,6 @@
 package com.maple.dao;
 
+import com.maple.dto.UserRegistryDTO;
 import com.maple.entity.UserRegistry;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,5 +27,11 @@ public class UserRegistryDaoTest {
     @Test
     public void updatePwd() {
         userRegistryDao.updatePwd(10,"newpassword");
+    }
+
+    @Test
+    public void getpwd() {
+        UserRegistry userRegistry = userRegistryDao.getPwdByUsername("kiko");
+        System.out.println(userRegistry.toString());
     }
 }

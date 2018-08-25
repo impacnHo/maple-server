@@ -1,6 +1,4 @@
-package com.maple.util;
-
-import org.springframework.stereotype.Component;
+package com.maple.util.result;
 
 /**
  * 响应结果生成工具

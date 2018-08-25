@@ -80,4 +80,8 @@ public class UserServiceTest {
         System.out.println(userService.isUsnExist("nmsl"));
     }
 
+    @Test
+    public void validatePwd() {
+        System.out.println(userService.validatePwd("kiko","kiko123"));
+    }
 }

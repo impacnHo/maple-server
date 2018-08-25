@@ -1,4 +1,4 @@
-package com.maple.util;
+package com.maple.util.result;
 
 /**
  * 响应码枚举

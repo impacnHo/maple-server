@@ -5,8 +5,8 @@ import com.github.pagehelper.PageHelper;
 import com.maple.dto.ProductDTO;
 import com.maple.dto.ProductItemDTO;
 import com.maple.service.ProductService;
-import com.maple.util.Result;
-import com.maple.util.ResultTemplate;
+import com.maple.util.result.Result;
+import com.maple.util.result.ResultTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

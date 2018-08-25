@@ -86,4 +86,10 @@ public class UserServiceImpl implements UserService {
         userConsignee.setId(userConsigneeDTO.getId());
         return userConsigneeDao.updateUserConsignee(userConsignee) != null;
     }
+
+    @Override
+    public Integer validatePwd(String username, String pwd) {
+        UserRegistry userRegistry = userRegistryDao.getPwdByUsername(username);
+        return pwd.equals(userRegistry.getPwd()) ? userRegistry.getId() : 0;
+    }
 }

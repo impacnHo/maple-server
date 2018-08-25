@@ -26,6 +26,7 @@ public interface UserService {
 
     /**
      * 验证用户名是否存在
+     *
      * @param username
      * @return
      */
@@ -71,4 +72,13 @@ public interface UserService {
      * @return
      */
     boolean updateUserConsignee(UserConsigneeDTO userConsigneeDTO);
+
+    /**
+     * 登录验证用户密码
+     *
+     * @param username
+     * @param pwd
+     * @return
+     */
+    Integer validatePwd(String username, String pwd);
 }
