@@ -5,10 +5,11 @@ package com.maple.util.result;
  */
 public class Result {
     private int code;
-    private Object message;
+    private String message;
     private Object data;
 
-    public Result() {}
+    public Result() {
+    }
 
     public int getCode() {
         return code;
@@ -19,11 +20,11 @@ public class Result {
         return this;
     }
 
-    public Object getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    public Result setMessage(Object message) {
+    public Result setMessage(String message) {
         this.message = message;
         return this;
     }

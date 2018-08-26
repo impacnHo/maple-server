@@ -22,14 +22,14 @@ public class ProductController {
     public Result listProduct(@RequestParam(defaultValue = "1") int page) {
         Page pageInfo = PageHelper.startPage(page, 12);
         List<ProductItemDTO> productItemDTOList = productService.listProduct();
-        return ResultTemplate.getSuccessResult(pageInfo.getPages(), productItemDTOList);
+        return ResultTemplate.getSuccessResult(String.valueOf(pageInfo.getPages()), productItemDTOList);
     }
 
     @GetMapping("/product/{typeName}")
     public Result listProductByTypeName(@PathVariable String typeName, @RequestParam(defaultValue = "1") int page) {
         Page pageInfo = PageHelper.startPage(page, 12);
         List<ProductItemDTO> productItemDTOList = productService.listProductByTypeName(typeName);
-        return ResultTemplate.getSuccessResult(pageInfo.getPages(), productItemDTOList);
+        return ResultTemplate.getSuccessResult(String.valueOf(pageInfo.getPages()), productItemDTOList);
     }
 
     @GetMapping("/product/p/{productNum}")
@@ -42,6 +42,6 @@ public class ProductController {
     public Result listProductBySearch(@RequestParam String keyword, @RequestParam(defaultValue = "1") int page) {
         Page pageInfo = PageHelper.startPage(page, 12);
         List<ProductItemDTO> productItemDTOList = productService.listProductBySearch(keyword);
-        return ResultTemplate.getSuccessResult(pageInfo.getPages(), productItemDTOList);
+        return ResultTemplate.getSuccessResult(String.valueOf(pageInfo.getPages()), productItemDTOList);
     }
 }

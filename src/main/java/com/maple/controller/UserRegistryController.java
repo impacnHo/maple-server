@@ -30,10 +30,10 @@ public class UserRegistryController {
     }
 
     @PostMapping("/login")
-    public Result userLogin(@RequestParam("username") String username, @RequestParam("pwd") String pwd) {
-        if (!userService.isUsnExist(username))
+    public Result userLogin(@RequestBody UserRegistryDTO userRegistryDTO) {
+        if (!userService.isUsnExist(userRegistryDTO.getUsername()))
             return ResultTemplate.getFailResult("用户名不存在");
-        int uid = userService.validatePwd(username, pwd);
+        int uid = userService.validatePwd(userRegistryDTO.getUsername(), userRegistryDTO.getPwd());
         if (uid != 0) {
             return ResultTemplate.getSuccessResult(TokenUtil.createToken(uid));
         } else {

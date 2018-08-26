@@ -22,7 +22,7 @@ public class ResultTemplate {
     }
 
     //成功，自定义消息及数据
-    public static Result getSuccessResult(Object message, Object data) {
+    public static Result getSuccessResult(String message, Object data) {
         return new Result()
                 .setCode(ResultCode.SUCCESS)
                 .setMessage(message)
@@ -30,14 +30,14 @@ public class ResultTemplate {
     }
 
     //失败，附带消息
-    public static Result getFailResult(Object message) {
+    public static Result getFailResult(String message) {
         return new Result()
                 .setCode(ResultCode.FAIL)
                 .setMessage(message);
     }
 
     //失败，自定义消息及数据
-    public static Result getFailResult(Object message, Object data) {
+    public static Result getFailResult(String message, Object data) {
         return new Result()
                 .setCode(ResultCode.FAIL)
                 .setMessage(message)
@@ -45,7 +45,7 @@ public class ResultTemplate {
     }
 
     //自定义创建
-    public static Result getFreeResult(ResultCode code, Object message, Object data) {
+    public static Result getFreeResult(ResultCode code, String message, Object data) {
         return new Result()
                 .setCode(code)
                 .setMessage(message)
