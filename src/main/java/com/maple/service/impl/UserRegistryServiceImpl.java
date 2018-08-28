@@ -9,13 +9,13 @@ import com.maple.dto.UserRegistryDTO;
 import com.maple.entity.UserConsignee;
 import com.maple.entity.UserInfo;
 import com.maple.entity.UserRegistry;
-import com.maple.service.UserService;
+import com.maple.service.UserRegistryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service("userService")
-public class UserServiceImpl implements UserService {
+public class UserRegistryServiceImpl implements UserRegistryService {
     @Autowired
     private UserRegistryDao userRegistryDao;
     @Autowired
@@ -64,28 +64,6 @@ public class UserServiceImpl implements UserService {
         return userRegistryDao.updatePwd(id, newPwd) != null;
     }
 
-    @Override
-    public boolean updateUserInfo(UserInfoDTO userInfoDTO) {
-        UserInfo userInfo = new UserInfo(userInfoDTO.getId(), userInfoDTO.getName(), userInfoDTO.isSex(), userInfoDTO.getBirth(), userInfoDTO.getLocation());
-        return userInfoDao.updateUserInfo(userInfo) != null;
-    }
-
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public Integer saveUserConsignee(UserConsigneeDTO userConsigneeDTO) {
-        UserConsignee userConsignee = new UserConsignee(userConsigneeDTO.getUserId(), userConsigneeDTO.getName(), userConsigneeDTO.getTel(), userConsigneeDTO.getAddress());
-        userConsigneeDao.saveUserConsignee(userConsignee);
-        int ucid = userConsignee.getId();
-        return ucid;
-    }
-
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public boolean updateUserConsignee(UserConsigneeDTO userConsigneeDTO) {
-        UserConsignee userConsignee = new UserConsignee(userConsigneeDTO.getUserId(), userConsigneeDTO.getName(), userConsigneeDTO.getTel(), userConsigneeDTO.getAddress());
-        userConsignee.setId(userConsigneeDTO.getId());
-        return userConsigneeDao.updateUserConsignee(userConsignee) != null;
-    }
 
     @Override
     public Integer validatePwd(String username, String pwd) {

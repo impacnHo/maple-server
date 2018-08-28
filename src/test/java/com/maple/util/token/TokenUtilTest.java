@@ -1,6 +1,9 @@
 package com.maple.util.token;
 
+import com.auth0.jwt.interfaces.Claim;
 import org.junit.Test;
+
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -11,8 +14,8 @@ public class TokenUtilTest {
         String token = TokenUtil.createToken(2);
         System.out.println(token);
         System.out.println("===========");
-        System.out.println(TokenUtil.verifyToken(token));
-        System.out.println("===========");
-        System.out.println(TokenUtil.verifyToken("nmslwsndhjyz"));
+        Map<String,Claim> claims = TokenUtil.verifyToken(token);
+        int id = claims.get("uid").asInt();
+        System.out.println(id);
     }
 }

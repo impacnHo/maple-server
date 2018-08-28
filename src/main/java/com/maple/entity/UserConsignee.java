@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class UserConsignee implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1043291699366158890L;
     private Integer id;
     private Integer userId;
     private String name;

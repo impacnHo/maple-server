@@ -1,7 +1,10 @@
 package com.maple.dao;
 
+import com.maple.dto.UserInfoDTO;
 import com.maple.entity.UserInfo;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
@@ -28,4 +31,8 @@ public interface UserInfoDao {
             "SET name = #{name},sex = #{sex},birth = #{birth},location = #{location},gmt_modified = now() " +
             "WHERE id = #{id}")
     Integer updateUserInfo(UserInfo userInfo);
+
+
+    @Select("SELECT name,sex,birth,location FROM user_info WHERE id = #{id}")
+    UserInfoDTO getUserInfo(@Param("id") Integer id);
 }

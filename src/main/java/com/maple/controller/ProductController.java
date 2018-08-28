@@ -14,25 +14,37 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/product")
 public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/product")
+    /**
+     * 不分类获取商品列表
+     * @param page
+     * @return
+     */
+    @GetMapping("/")
     public Result listProduct(@RequestParam(defaultValue = "1") int page) {
         Page pageInfo = PageHelper.startPage(page, 12);
         List<ProductItemDTO> productItemDTOList = productService.listProduct();
         return ResultTemplate.getSuccessResult(String.valueOf(pageInfo.getPages()), productItemDTOList);
     }
 
-    @GetMapping("/product/{typeName}")
+    /**
+     * 分类获取商品列表
+     * @param typeName
+     * @param page
+     * @return
+     */
+    @GetMapping("/{typeName}")
     public Result listProductByTypeName(@PathVariable String typeName, @RequestParam(defaultValue = "1") int page) {
         Page pageInfo = PageHelper.startPage(page, 12);
         List<ProductItemDTO> productItemDTOList = productService.listProductByTypeName(typeName);
         return ResultTemplate.getSuccessResult(String.valueOf(pageInfo.getPages()), productItemDTOList);
     }
 
-    @GetMapping("/product/p/{productNum}")
+    @GetMapping("/p/{productNum}")
     public Result getProduct(@PathVariable String productNum) {
         ProductDTO productDTO = productService.getProduct(productNum);
         return ResultTemplate.getSuccessResult(productDTO);

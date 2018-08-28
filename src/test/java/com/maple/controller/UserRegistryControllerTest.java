@@ -1,8 +1,7 @@
 package com.maple.controller;
 
 import com.maple.dto.UserRegistryDTO;
-import com.maple.service.UserService;
-import com.maple.util.result.ResultTemplate;
+import com.maple.service.UserRegistryService;
 import com.maple.util.token.TokenUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,16 +13,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class UserRegistryControllerTest {
     @Autowired
-    private UserService userService;
+    private UserRegistryService userRegistryService;
 
     @Test
     public void test() {
         UserRegistryDTO userRegistryDTO = new UserRegistryDTO();
         userRegistryDTO.setUsername("kiko");
         userRegistryDTO.setPwd("kiko123");
-        if (!userService.isUsnExist(userRegistryDTO.getUsername()))
+        if (!userRegistryService.isUsnExist(userRegistryDTO.getUsername()))
             System.out.println("用户名不存在");
-        int uid = userService.validatePwd(userRegistryDTO.getUsername(), userRegistryDTO.getPwd());
+        int uid = userRegistryService.validatePwd(userRegistryDTO.getUsername(), userRegistryDTO.getPwd());
         if (uid != 0) {
             System.out.println(TokenUtil.createToken(uid));
         } else {
