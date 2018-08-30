@@ -37,6 +37,14 @@ public class UserConsigneeController {
         String token = request.getHeader("access_token");
         Map<String, Claim> claims = TokenUtil.verifyToken(token);
         if (null != claims) {
+            // 验证
+            if(!userConsigneeService.validateNameLength(userConsigneeDTO.getName()))
+                return ResultTemplate.getFailResult("姓名长度错误");
+            if(!userConsigneeService.validateAddressLength(userConsigneeDTO.getAddress()))
+                return ResultTemplate.getFailResult("地址长度错误");
+            if(!userConsigneeService.validateTelFormat(userConsigneeDTO.getTel()))
+                return ResultTemplate.getFailResult("联系电话长度或格式错误");
+
             int userId = claims.get("uid").asInt();
             userConsigneeDTO.setUserId(userId);
             return ResultTemplate.getSuccessResult(userConsigneeService.saveUserConsignee(userConsigneeDTO));

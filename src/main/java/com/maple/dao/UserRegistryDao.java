@@ -41,4 +41,13 @@ public interface UserRegistryDao {
      */
     @Select("SELECT id,username,pwd FROM user_registry WHERE username = #{username}")
     UserRegistry getPwdByUsername(@Param("username") String username);
+
+    /**
+     * 通过id查询用户密码
+     *
+     * @param id
+     * @return
+     */
+    @Select("SELECT pwd FROM user_registry WHERE id = #{id}")
+    String getPwdById(@Param("id") Integer id);
 }

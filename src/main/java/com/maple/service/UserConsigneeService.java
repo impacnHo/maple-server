@@ -47,4 +47,27 @@ public interface UserConsigneeService {
      * @return
      */
     boolean deleteUserConsignee(Integer id, Integer userId);
+
+    /**
+     * 验证姓名长度
+     * @param name
+     * @return
+     */
+    boolean validateNameLength(String name);
+
+    /**
+     * 验证地址长度
+     * @param address
+     * @return
+     */
+    boolean validateAddressLength(String address);
+
+    /**
+     * 验证电话号码格式
+     * @param tel
+     * @return
+     */
+    boolean validateTelFormat(String tel);
+
+
 }

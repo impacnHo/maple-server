@@ -70,4 +70,9 @@ public class UserRegistryServiceImpl implements UserRegistryService {
         UserRegistry userRegistry = userRegistryDao.getPwdByUsername(username);
         return pwd.equals(userRegistry.getPwd()) ? userRegistry.getId() : 0;
     }
+
+    @Override
+    public String getPwd(Integer id) {
+        return userRegistryDao.getPwdById(id);
+    }
 }

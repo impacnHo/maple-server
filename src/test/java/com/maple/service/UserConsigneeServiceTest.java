@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.persistence.Temporal;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -54,4 +55,15 @@ public class UserConsigneeServiceTest {
     public void deleteUserConsignee() {
         System.out.println(userConsigneeService.deleteUserConsignee(5,1));
     }
+
+    @Test
+    public void testName() {
+        System.out.println(userConsigneeService.validateNameLength("五呜呜呜无"));
+    }
+
+    @Test
+    public void testTel() {
+        System.out.println(userConsigneeService.validateTelFormat(""));
+    }
+
 }

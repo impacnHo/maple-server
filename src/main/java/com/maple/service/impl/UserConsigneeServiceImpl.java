@@ -18,7 +18,7 @@ public class UserConsigneeServiceImpl implements UserConsigneeService {
 
     @Override
     public UserConsigneeDTO getUserConsignee(Integer id) {
-        UserConsignee userConsignee =  userConsigneeDao.getUserConsignee(id);
+        UserConsignee userConsignee = userConsigneeDao.getUserConsignee(id);
         UserConsigneeDTO userConsigneeDTO = new UserConsigneeDTO();
         userConsigneeDTO.setId(userConsignee.getId());
         userConsigneeDTO.setName(userConsignee.getName());
@@ -68,6 +68,21 @@ public class UserConsigneeServiceImpl implements UserConsigneeService {
     @Override
     public boolean deleteUserConsignee(Integer id, Integer userId) {
         return userConsigneeDao.deleteUserConsignee(id, userId) != null;
+    }
+
+    @Override
+    public boolean validateNameLength(String name) {
+        return (name.length() >= 2 && name.length() <= 4) ? true : false;
+    }
+
+    @Override
+    public boolean validateAddressLength(String address) {
+        return (address.length() >= 10 && address.length() <= 40) ? true : false;
+    }
+
+    @Override
+    public boolean validateTelFormat(String tel) {
+        return (tel.matches("^[1][3,4,5,7,8][0-9]{9}$") && tel.length() == 11) ? true : false;
     }
 
 }

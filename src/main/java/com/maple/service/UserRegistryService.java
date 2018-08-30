@@ -57,4 +57,12 @@ public interface UserRegistryService {
      * @return
      */
     Integer validatePwd(String username, String pwd);
+
+    /**
+     * 通过id获取用户密码
+     *
+     * @param id
+     * @return
+     */
+    String getPwd(Integer id);
 }
