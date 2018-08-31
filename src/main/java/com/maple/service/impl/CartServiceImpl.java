@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("cartService")
@@ -19,13 +18,11 @@ public class CartServiceImpl implements CartService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean saveCart(CartDTO cartDTO) {
+    public boolean saveCart(CartDTO cartDTO, Integer userId) {
         // 转换
-        Cart cart = new Cart(cartDTO.getUserId(), cartDTO.getStockId(), cartDTO.getQuanlity());
-        // 获取用户id
-        int uid = cartDTO.getUserId();
+        Cart cart = new Cart(userId, cartDTO.getStockId(), cartDTO.getQuanlity());
         // 获取用户购物车列表
-        List<CartItemDTO> cartItemDTOS = cartDao.listCart(uid);
+        List<CartItemDTO> cartItemDTOS = cartDao.listCart(userId);
         // 检查是传入购物车项否已存在
         boolean flag = false;
         for (CartItemDTO cartItemDTO : cartItemDTOS) {
@@ -42,7 +39,7 @@ public class CartServiceImpl implements CartService {
             System.out.println("updating...");
             int cartId = cart.getId();
             int quanlity = cart.getQuanlity();
-            return cartDao.updateCart(cartId, quanlity) != null;
+            return cartDao.updateCart(cartId, userId, quanlity) != null;
         } else {
             // 新增购物车项目
             System.out.println("saving...");
@@ -52,14 +49,14 @@ public class CartServiceImpl implements CartService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean deleteCart(Integer id) {
-        return cartDao.deleteCart(id) != null;
+    public boolean deleteCart(Integer id, Integer userId) {
+        return cartDao.deleteCart(id, userId) != null;
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean updateCart(Integer id, Integer quanlity) {
-        return cartDao.updateCart(id, quanlity) != null;
+    public boolean updateCart(Integer id, Integer userId, Integer quanlity) {
+        return cartDao.updateCart(id, userId, quanlity) != null;
     }
 
     @Override

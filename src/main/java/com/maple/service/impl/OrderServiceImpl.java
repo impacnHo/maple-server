@@ -94,7 +94,7 @@ public class OrderServiceImpl implements OrderService {
         // 删除已选购物车项目
         System.out.println("删除购物车");
         for (int i = 0; i < cartIds.length; i++) {
-            cartDao.deleteCart(cartIds[i]);
+            cartDao.deleteCart(cartIds[i], userId);
         }
 
         return orderId;

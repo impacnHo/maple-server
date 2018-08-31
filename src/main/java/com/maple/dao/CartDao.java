@@ -22,23 +22,25 @@ public interface CartDao {
     Integer saveCart(Cart cart);
 
     /**
-     * 删除购物车
+     * 根据用户id和购物车id删除购物车
      *
      * @param id
+     * @param userId
      */
-    @Delete("DELETE FROM cart WHERE id = #{id}")
-    Integer deleteCart(@Param("id") Integer id);
+    @Delete("DELETE FROM cart WHERE id = #{id} AND user = #{userId}")
+    Integer deleteCart(@Param("id") Integer id, @Param("userId") Integer userId);
 
     /**
      * 更新购物车
      *
      * @param id
+     * @param userId
      * @param quanlity
      */
     @Update("UPDATE cart " +
             "SET quanlity = #{quanlity},gmt_modified = now() " +
-            "WHERE id = #{id}")
-    Integer updateCart(@Param("id") Integer id, @Param("quanlity") Integer quanlity);
+            "WHERE id = #{id} AND user = #{userId}")
+    Integer updateCart(@Param("id") Integer id, @Param("userId") Integer userId, @Param("quanlity") Integer quanlity);
 
     /**
      * 根据用户id获取购物车列表

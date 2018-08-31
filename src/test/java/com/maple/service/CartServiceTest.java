@@ -21,20 +21,19 @@ public class CartServiceTest {
     @Test
     public void saveCart() {
         CartDTO cartDTO = new CartDTO();
-        cartDTO.setUserId(1);
         cartDTO.setStockId(6);
         cartDTO.setQuanlity(2);
-        System.out.println(cartService.saveCart(cartDTO));
+        System.out.println(cartService.saveCart(cartDTO, 1));
     }
 
     @Test
     public void deleteCart() {
-        System.out.println(cartService.deleteCart(2));
+        System.out.println(cartService.deleteCart(2, 1));
     }
 
     @Test
     public void updateCart() {
-        System.out.println(cartService.updateCart(1, 1));
+        System.out.println(cartService.updateCart(1, 2, 1));
     }
 
     @Test

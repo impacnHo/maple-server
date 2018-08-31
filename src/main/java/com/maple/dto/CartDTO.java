@@ -2,19 +2,13 @@ package com.maple.dto;
 
 import java.io.Serializable;
 
+/**
+ * 在商品详情请求添加购物车的传入对象
+ */
 public class CartDTO implements Serializable {
     private static final long serialVersionUID = -9035937423299159194L;
-    private Integer userId;
     private Integer StockId;
     private Integer quanlity;
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
     public Integer getStockId() {
         return StockId;
@@ -35,7 +29,6 @@ public class CartDTO implements Serializable {
     @Override
     public String toString() {
         return "CartDTO{" +
-                "userId=" + userId +
                 ", StockId=" + StockId +
                 ", quanlity=" + quanlity +
                 '}';
