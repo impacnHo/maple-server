@@ -1,9 +1,11 @@
 package com.maple.service.impl;
 
 import com.maple.dao.CartDao;
+import com.maple.dao.StockDao;
 import com.maple.dto.CartDTO;
 import com.maple.dto.CartItemDTO;
 import com.maple.entity.Cart;
+import com.maple.entity.Stock;
 import com.maple.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,8 @@ import java.util.List;
 public class CartServiceImpl implements CartService {
     @Autowired
     private CartDao cartDao;
+    @Autowired
+    private StockDao stockDao;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -34,15 +38,17 @@ public class CartServiceImpl implements CartService {
             }
         }
 
+        // 验证数量
+        if(!validateCart(cart.getStock(),cart.getQuanlity()))
+            return false;
+
         if (flag) {
             // 已存在，更新
-            System.out.println("updating...");
             int cartId = cart.getId();
             int quanlity = cart.getQuanlity();
             return cartDao.updateCart(cartId, userId, quanlity) != null;
         } else {
             // 新增购物车项目
-            System.out.println("saving...");
             return cartDao.saveCart(cart) != null;
         }
     }
@@ -62,5 +68,12 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<CartItemDTO> listCart(Integer id) {
         return cartDao.listCart(id);
+    }
+
+    @Override
+    public boolean validateCart(Integer stockId, Integer quanlity) {
+        Stock stock = stockDao.getStock(stockId);
+        int maxQuanlity = stock.getQuanlity();
+        return quanlity > maxQuanlity ? false : true;
     }
 }

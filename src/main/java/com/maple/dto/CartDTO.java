@@ -7,15 +7,15 @@ import java.io.Serializable;
  */
 public class CartDTO implements Serializable {
     private static final long serialVersionUID = -9035937423299159194L;
-    private Integer StockId;
+    private Integer stockId;
     private Integer quanlity;
 
     public Integer getStockId() {
-        return StockId;
+        return stockId;
     }
 
     public void setStockId(Integer stockId) {
-        StockId = stockId;
+        this.stockId = stockId;
     }
 
     public Integer getQuanlity() {
@@ -29,7 +29,7 @@ public class CartDTO implements Serializable {
     @Override
     public String toString() {
         return "CartDTO{" +
-                ", StockId=" + StockId +
+                ", stockId=" + stockId +
                 ", quanlity=" + quanlity +
                 '}';
     }

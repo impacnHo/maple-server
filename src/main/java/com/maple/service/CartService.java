@@ -42,4 +42,12 @@ public interface CartService {
      * @return
      */
     List<CartItemDTO> listCart(Integer userId);
+
+    /**
+     * 检查添加的商品请求库存是否超过最大值
+     * @param stockId
+     * @param quanlity
+     * @return
+     */
+    boolean validateCart(Integer stockId, Integer quanlity);
 }

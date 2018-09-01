@@ -43,4 +43,9 @@ public class CartServiceTest {
             System.out.println(c.toString());
         }
     }
+
+    @Test
+    public void testValidateCart() {
+        System.out.println(cartService.validateCart(6,12));
+    }
 }
