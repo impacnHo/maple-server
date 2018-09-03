@@ -46,6 +46,6 @@ public class CartServiceTest {
 
     @Test
     public void testValidateCart() {
-        System.out.println(cartService.validateCart(6,12));
+        System.out.println(cartService.validateSaveCart(6,12));
     }
 }

@@ -50,7 +50,7 @@ public interface CartDao {
      */
     @Select("SELECT c.id AS id,p.name AS name,p.sub_name AS subName," +
             "p.product_num AS productNum,s.id AS stockId,s.name AS stockName," +
-            "c.quanlity AS quanlity,s.quanlity AS maxQuanlity " +
+            "p.price AS price,c.quanlity AS quanlity,s.quanlity AS maxQuanlity " +
             "FROM cart as c,product as p,stock as s,user_registry as u " +
             "WHERE c.stock = s.id AND s.product_id = p.id AND c.user = u.id AND u.id = #{id}")
     List<CartItemDTO> listCart(@Param("id") Integer id);

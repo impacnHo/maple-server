@@ -39,7 +39,7 @@ public class CartServiceImpl implements CartService {
         }
 
         // 验证数量
-        if(!validateCart(cart.getStock(),cart.getQuanlity()))
+        if (!validateSaveCart(cart.getStock(), cart.getQuanlity()))
             return false;
 
         if (flag) {
@@ -62,6 +62,8 @@ public class CartServiceImpl implements CartService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean updateCart(Integer id, Integer userId, Integer quanlity) {
+        if(!validateUpdateCart(id,quanlity))
+            return false;
         return cartDao.updateCart(id, userId, quanlity) != null;
     }
 
@@ -71,9 +73,14 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public boolean validateCart(Integer stockId, Integer quanlity) {
+    public boolean validateSaveCart(Integer stockId, Integer quanlity) {
         Stock stock = stockDao.getStock(stockId);
         int maxQuanlity = stock.getQuanlity();
         return quanlity > maxQuanlity ? false : true;
+    }
+
+    @Override
+    public boolean validateUpdateCart(Integer cartId, Integer quanlity) {
+        return quanlity > stockDao.getMaxQltyByCartId(cartId) ? false : true;
     }
 }

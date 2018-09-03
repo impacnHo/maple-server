@@ -51,19 +51,19 @@ public class CartController {
         Map<String, Claim> claims = TokenUtil.verifyToken(token);
         if (null != claims) {
             int userId = claims.get("uid").asInt();
-            return ResultTemplate.getSuccessResult(cartService.saveCart(cartDTO, userId));
+            return ResultTemplate.getSuccessResult(cartService.updateCart(cartDTO.getStockId(), userId, cartDTO.getQuanlity()));
         } else {
             return ResultTemplate.getFreeResult(ResultCode.UNAUTHORIZED, "认证失败", null);
         }
     }
 
     @DeleteMapping("/{id}")
-    public Result deleteCart(HttpServletRequest request, @PathVariable Integer cartId) {
+    public Result deleteCart(HttpServletRequest request, @PathVariable Integer id) {
         String token = request.getHeader("access_token");
         Map<String, Claim> claims = TokenUtil.verifyToken(token);
         if (null != claims) {
             int userId = claims.get("uid").asInt();
-            return ResultTemplate.getSuccessResult(cartService.deleteCart(cartId, userId));
+            return ResultTemplate.getSuccessResult(cartService.deleteCart(id, userId));
         } else {
             return ResultTemplate.getFreeResult(ResultCode.UNAUTHORIZED, "认证失败", null);
         }

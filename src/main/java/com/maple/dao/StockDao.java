@@ -33,6 +33,7 @@ public interface StockDao {
 
     /**
      * 更新库存
+     *
      * @param stock
      * @return
      */
@@ -40,4 +41,15 @@ public interface StockDao {
             "SET quanlity = #{quanlity},gmt_modified = now()" +
             "WHERE id = #{id}")
     Integer updateStock(Stock stock);
+
+    /**
+     * 通过购物车列表的库存id获取最大库存值
+     *
+     * @param id
+     * @return
+     */
+    @Select("SELECT s.quanlity " +
+            "FROM cart AS c,stock AS s " +
+            "WHERE c.stock = s.id AND c.id = #{id}")
+    Integer getMaxQltyByCartId(@Param("id") Integer id);
 }

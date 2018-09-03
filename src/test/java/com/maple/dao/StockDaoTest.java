@@ -26,4 +26,9 @@ public class StockDaoTest {
             System.out.println(s.toString());
         }
     }
+
+    @Test
+    public void test() {
+        System.out.println(stockDao.getMaxQltyByCartId(1));
+    }
 }

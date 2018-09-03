@@ -1,6 +1,7 @@
 package com.maple.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * 购物车列表中的购物车项
@@ -13,19 +14,21 @@ public class CartItemDTO implements Serializable {
     private String productNum;
     private Integer stockId;
     private String stockName;
+    private BigDecimal price;
     private Integer quanlity;
     private Integer maxQuanlity;
 
     public CartItemDTO() {
     }
 
-    public CartItemDTO(Integer id, String name, String subName, String productNum, Integer stockId, String stockName, Integer quanlity, Integer maxQuanlity) {
+    public CartItemDTO(Integer id, String name, String subName, String productNum, Integer stockId, String stockName, BigDecimal price,Integer quanlity, Integer maxQuanlity) {
         this.id = id;
         this.name = name;
         this.subName = subName;
         this.productNum = productNum;
         this.stockId = stockId;
         this.stockName = stockName;
+        this.price = price;
         this.quanlity = quanlity;
         this.maxQuanlity = maxQuanlity;
     }
@@ -78,6 +81,14 @@ public class CartItemDTO implements Serializable {
         this.stockName = stockName;
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public Integer getQuanlity() {
         return quanlity;
     }
@@ -103,6 +114,7 @@ public class CartItemDTO implements Serializable {
                 ", productNum='" + productNum + '\'' +
                 ", stockId=" + stockId +
                 ", stockName='" + stockName + '\'' +
+                ", price=" + price +
                 ", quanlity=" + quanlity +
                 ", maxQuanlity=" + maxQuanlity +
                 '}';

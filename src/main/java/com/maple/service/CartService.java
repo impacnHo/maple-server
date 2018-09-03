@@ -45,9 +45,19 @@ public interface CartService {
 
     /**
      * 检查添加的商品请求库存是否超过最大值
+     *
      * @param stockId
      * @param quanlity
      * @return
      */
-    boolean validateCart(Integer stockId, Integer quanlity);
+    boolean validateSaveCart(Integer stockId, Integer quanlity);
+
+    /**
+     * 检查修改购物车是修改值是否超过最大值
+     *
+     * @param cartId
+     * @param quanlity
+     * @return
+     */
+    boolean validateUpdateCart(Integer cartId, Integer quanlity);
 }
