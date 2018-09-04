@@ -24,7 +24,7 @@ public class ProductController {
      * @param page
      * @return
      */
-    @GetMapping("/")
+    @GetMapping("/all")
     public Result listProduct(@RequestParam(defaultValue = "1") int page) {
         Page pageInfo = PageHelper.startPage(page, 12);
         List<ProductItemDTO> productItemDTOList = productService.listProduct();

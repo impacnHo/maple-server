@@ -17,8 +17,8 @@ public class OrderServiceTest {
 
     @Test
     public void saveOrder() {
-        int[] cartIds = {6, 7};
-        orderService.saveOrder(1, cartIds, 2);
+        int[] cartIds = {1};
+        orderService.saveOrder(1, cartIds, 4);
     }
 
     @Test
