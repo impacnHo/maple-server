@@ -42,4 +42,16 @@ public class OrderController {
             return ResultTemplate.getFreeResult(ResultCode.UNAUTHORIZED, "认证失败", null);
         }
     }
+
+    @GetMapping("/{id}")
+    public Result getOrder(HttpServletRequest request, @PathVariable("id") Integer id) {
+        String token = request.getHeader("access_token");
+        Map<String, Claim> claims = TokenUtil.verifyToken(token);
+        if (null != claims) {
+            int userId = claims.get("uid").asInt();
+            return ResultTemplate.getSuccessResult(orderService.getOrderDetial(id, userId));
+        } else {
+            return ResultTemplate.getFreeResult(ResultCode.UNAUTHORIZED, "认证失败", null);
+        }
+    }
 }

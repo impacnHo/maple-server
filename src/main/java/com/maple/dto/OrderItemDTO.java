@@ -14,7 +14,7 @@ public class OrderItemDTO implements Serializable {
     private String stockName;
     private BigDecimal unitPrice;
     private Integer quanlity;
-    private BigDecimal UnitTotal;
+    private BigDecimal unitTotal;
 
     public String getProductNum() {
         return productNum;
@@ -65,11 +65,11 @@ public class OrderItemDTO implements Serializable {
     }
 
     public BigDecimal getUnitTotal() {
-        return UnitTotal;
+        return unitTotal;
     }
 
     public void setUnitTotal(BigDecimal unitTotal) {
-        UnitTotal = unitTotal;
+        this.unitTotal = unitTotal;
     }
 
     @Override
@@ -81,7 +81,7 @@ public class OrderItemDTO implements Serializable {
                 ", stockName='" + stockName + '\'' +
                 ", unitPrice=" + unitPrice +
                 ", quanlity=" + quanlity +
-                ", UnitTotal=" + UnitTotal +
+                ", UnitTotal=" + unitTotal +
                 '}';
     }
 }

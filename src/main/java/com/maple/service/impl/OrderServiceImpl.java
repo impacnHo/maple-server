@@ -6,6 +6,7 @@ import com.maple.dto.OrderDetailDTO;
 import com.maple.dto.OrderItemDTO;
 import com.maple.entity.*;
 import com.maple.service.OrderService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -108,11 +109,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean cancelOrder(Integer orderId) {
+    public boolean cancelOrder(Integer orderId, Integer userId) {
         Stock stock;
 
         // 获取订单实体，更新状态
-        Order order = orderDao.getOrder(orderId);
+        Order order = orderDao.getOrder(orderId, userId);
         order.setStatus(1);
 
         // 获取订单商品项，恢复库存
@@ -129,8 +130,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean payForOrder(Integer orderId, Integer payment, String account) {
-        Order order = orderDao.getOrder(orderId);
+    public boolean payForOrder(Integer orderId, Integer userId, Integer payment, String account) {
+        Order order = orderDao.getOrder(orderId, userId);
         order.setPayment(payment);
         order.setAccount(account);
         order.setStatus(2);
@@ -143,11 +144,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDetailDTO getOrderDetial(Integer orderId) {
+    public OrderDetailDTO getOrderDetial(Integer orderId, Integer userId) {
         OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
-        Order order = orderDao.getOrder(orderId);
-        OrderConsignee orderConsignee = orderConsigneeDao.getOrderConsignee(orderId);
-        List<OrderItemDTO> orderItemDTOS = orderItemDao.listOrderItemByOrderId(orderId);
+        Order order = orderDao.getOrder(orderId, userId);
+        OrderConsignee orderConsignee = orderConsigneeDao.getOrderConsignee(order.getId());
+        List<OrderItemDTO> orderItemDTOS = orderItemDao.listOrderItemByOrderId(order.getId());
 
         for (OrderItemDTO oit : orderItemDTOS) {
             oit.setUnitTotal(oit.getUnitPrice().multiply(new BigDecimal(oit.getQuanlity())));

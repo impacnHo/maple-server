@@ -42,9 +42,9 @@ public interface OrderItemDao {
      * @return
      */
     @Select("SELECT product_num AS productNum,p.name AS name,sub_name AS subName," +
-            "s.name AS stockName,oi.unit_price AS unitPrice,oi.quanlity AS quanlity " +
+            "s.name AS stockName,oi.unit_price AS unitPrice,oi.quanlity AS quanlity,oi.unit_price*oi.quanlity AS unitTotal " +
             "FROM order_item AS oi,product AS p,stock AS s,maple_order as o " +
-            "WHERE oi.stock = s.id AND s.product_id = p.id AND o.id = #{id}")
+            "WHERE oi.stock = s.id AND s.product_id = p.id AND oi.order_id = o.id AND o.id = #{id}")
     List<OrderItemDTO> listOrderItemByOrderId(@Param("id") Integer id);
 
     /**

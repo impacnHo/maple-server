@@ -31,19 +31,21 @@ public interface OrderService {
      * 取消订单，订单状态：1-已取消
      *
      * @param orderId
+     * @param userId
      * @return
      */
-    boolean cancelOrder(Integer orderId);
+    boolean cancelOrder(Integer orderId, Integer userId);
 
     /**
      * 支付订单
      *
      * @param orderId
+     * @param userId
      * @param payment
      * @param account
      * @return
      */
-    boolean payForOrder(Integer orderId, Integer payment, String account);
+    boolean payForOrder(Integer orderId, Integer userId, Integer payment, String account);
 
     /**
      * 根据用户id获取订单列表
@@ -57,7 +59,8 @@ public interface OrderService {
      * 订单详情
      *
      * @param orderId
+     * @param userId
      * @return
      */
-    OrderDetailDTO getOrderDetial(Integer orderId);
+    OrderDetailDTO getOrderDetial(Integer orderId, Integer userId);
 }

@@ -27,8 +27,8 @@ public interface OrderDao {
      * @param id
      * @return
      */
-    @Select("SELECT id,user,status,total,payment,account FROM maple_order WHERE id = #{id}")
-    Order getOrder(@Param("id") Integer id);
+    @Select("SELECT id,user,status,total,payment,account FROM maple_order WHERE id = #{id} AND user = #{userId}")
+    Order getOrder(@Param("id") Integer id, @Param("userId") Integer userId);
 
     /**
      * 删除订单
@@ -56,11 +56,11 @@ public interface OrderDao {
      * @param id
      * @return
      */
-    @Select("SELECT id,status,total FROM maple_order WHERE user = #{id}")
+    @Select("SELECT id,status,total FROM maple_order WHERE user = #{userId}")
     @Results({
             // 必须定义 id = true 否则id = null
             @Result(property = "id", column = "id", id = true),
             @Result(property = "orderItems", column = "id", many = @Many(select = "com.maple.dao.OrderItemDao.listOrderItemByOrderId"))
     })
-    List<OrderDTO> listOrder(@Param("id") Integer id);
+    List<OrderDTO> listOrder(@Param("userId") Integer id);
 }
