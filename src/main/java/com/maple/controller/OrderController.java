@@ -20,7 +20,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/")
-    public Result saveOrder(HttpServletRequest request, @RequestParam("cartIds") int[] cartIds, @RequestParam("userConsigneeId") Integer userConsigneeId) {
+    public Result saveOrder(HttpServletRequest request, @RequestParam("cartIds[]") int[] cartIds, @RequestParam("userConsigneeId") Integer userConsigneeId) {
         String token = request.getHeader("access_token");
         Map<String, Claim> claims = TokenUtil.verifyToken(token);
         if (null != claims) {
