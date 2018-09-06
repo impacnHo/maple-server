@@ -2,6 +2,7 @@ package com.maple.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 public class OrderDTO implements Serializable {
@@ -10,6 +11,7 @@ public class OrderDTO implements Serializable {
     private Integer status;
     private BigDecimal total;
     private List<OrderItemDTO> orderItems;
+    private Date createTime;
 
     public Integer getId() {
         return id;
@@ -43,6 +45,14 @@ public class OrderDTO implements Serializable {
         this.orderItems = orderItems;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
     @Override
     public String toString() {
         return "OrderDTO{" +
@@ -50,6 +60,7 @@ public class OrderDTO implements Serializable {
                 ", status=" + status +
                 ", total=" + total +
                 ", orderItems=" + orderItems +
+                ", createTime=" + createTime +
                 '}';
     }
 }
