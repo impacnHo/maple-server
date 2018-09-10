@@ -125,7 +125,7 @@ public class OrderServiceImpl implements OrderService {
             stockDao.updateStock(stock);
         }
 
-        return orderDao.updateOrder(order) != null;
+        return orderDao.updateOrder(order.getStatus(), order.getTotal(), order.getPayment(), order.getAccount(), orderId, userId) != null;
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -135,7 +135,7 @@ public class OrderServiceImpl implements OrderService {
         order.setPayment(payment);
         order.setAccount(account);
         order.setStatus(2);
-        return orderDao.updateOrder(order) != null;
+        return orderDao.updateOrder(order.getStatus(), order.getTotal(), order.getPayment(), order.getAccount(), orderId, userId) != null;
     }
 
     @Override
@@ -150,10 +150,6 @@ public class OrderServiceImpl implements OrderService {
         OrderConsignee orderConsignee = orderConsigneeDao.getOrderConsignee(order.getId());
         List<OrderItemDTO> orderItemDTOS = orderItemDao.listOrderItemByOrderId(order.getId());
 
-        for (OrderItemDTO oit : orderItemDTOS) {
-            oit.setUnitTotal(oit.getUnitPrice().multiply(new BigDecimal(oit.getQuanlity())));
-        }
-
         orderDetailDTO.setId(order.getId());
         orderDetailDTO.setStatus(order.getStatus());
         orderDetailDTO.setAccount(order.getAccount());
@@ -163,6 +159,7 @@ public class OrderServiceImpl implements OrderService {
         orderDetailDTO.setAddress(orderConsignee.getAddress());
         orderDetailDTO.setTel(orderConsignee.getTel());
         orderDetailDTO.setOrderItemDTOS(orderItemDTOS);
+        orderDetailDTO.setCreateTime(order.getGmtCreate());
         return orderDetailDTO;
     }
 }

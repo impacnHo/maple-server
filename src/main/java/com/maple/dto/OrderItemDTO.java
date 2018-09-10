@@ -2,6 +2,7 @@ package com.maple.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 订单列表、订单详情中的商品项
@@ -14,7 +15,6 @@ public class OrderItemDTO implements Serializable {
     private String stockName;
     private BigDecimal unitPrice;
     private Integer quanlity;
-    private BigDecimal unitTotal;
 
     public String getProductNum() {
         return productNum;
@@ -64,14 +64,6 @@ public class OrderItemDTO implements Serializable {
         this.quanlity = quanlity;
     }
 
-    public BigDecimal getUnitTotal() {
-        return unitTotal;
-    }
-
-    public void setUnitTotal(BigDecimal unitTotal) {
-        this.unitTotal = unitTotal;
-    }
-
     @Override
     public String toString() {
         return "OrderItemDTO{" +
@@ -81,7 +73,6 @@ public class OrderItemDTO implements Serializable {
                 ", stockName='" + stockName + '\'' +
                 ", unitPrice=" + unitPrice +
                 ", quanlity=" + quanlity +
-                ", UnitTotal=" + unitTotal +
                 '}';
     }
 }

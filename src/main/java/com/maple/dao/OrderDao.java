@@ -2,9 +2,11 @@ package com.maple.dao;
 
 import com.maple.dto.OrderDTO;
 import com.maple.entity.Order;
+import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -27,7 +29,7 @@ public interface OrderDao {
      * @param id
      * @return
      */
-    @Select("SELECT id,user,status,total,payment,account FROM maple_order WHERE id = #{id} AND user = #{userId}")
+    @Select("SELECT id,user,status,total,payment,account,gmt_create AS gmtCreate FROM maple_order WHERE id = #{id} AND user = #{userId}")
     Order getOrder(@Param("id") Integer id, @Param("userId") Integer userId);
 
     /**
@@ -42,13 +44,17 @@ public interface OrderDao {
     /**
      * 更新订单
      *
-     * @param order
+     * @param status
+     * @param total
+     * @param payment
+     * @param account
+     * @param userId
      * @return
      */
-    @Update("UPDATE order " +
+    @Update("UPDATE maple_order " +
             "SET status = #{status},total = #{total},payment = #{payment},account = #{account},gmt_modified = now() " +
-            "WHERE id = #{id}")
-    Integer updateOrder(Order order);
+            "WHERE id = #{id} AND user = #{userId}")
+    Integer updateOrder(@Param("status") Integer status, @Param("total") BigDecimal total, @Param("payment") Integer payment, @Param("account") String account, @Param("id") Integer id, @Param("userId") Integer userId);
 
     /**
      * 查看订单列表

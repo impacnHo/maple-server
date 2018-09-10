@@ -34,6 +34,7 @@ public class OrderServiceTest {
 
     @Test
     public void payForOrder() {
+        System.out.println(orderService.payForOrder(34,1,1,"myaccount"));
     }
 
     @Test
