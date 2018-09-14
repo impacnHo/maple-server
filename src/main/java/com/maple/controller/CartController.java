@@ -39,7 +39,12 @@ public class CartController {
         Map<String, Claim> claims = TokenUtil.verifyToken(token);
         if (null != claims) {
             int userId = claims.get("uid").asInt();
-            return ResultTemplate.getSuccessResult(cartService.saveCart(cartDTO, userId));
+            int id = cartService.saveCart(cartDTO, userId);
+            if(0 == id) {
+                return ResultTemplate.getFailResult("请求数量错误，请重试");
+            } else {
+                return ResultTemplate.getSuccessResult(String.valueOf(id));
+            }
         } else {
             return ResultTemplate.getFreeResult(ResultCode.UNAUTHORIZED, "认证失败", null);
         }

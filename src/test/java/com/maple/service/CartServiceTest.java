@@ -22,7 +22,7 @@ public class CartServiceTest {
     public void saveCart() {
         CartDTO cartDTO = new CartDTO();
         cartDTO.setStockId(6);
-        cartDTO.setQuanlity(2);
+        cartDTO.setQuanlity(5);
         System.out.println(cartService.saveCart(cartDTO, 1));
     }
 
@@ -33,7 +33,7 @@ public class CartServiceTest {
 
     @Test
     public void updateCart() {
-        System.out.println(cartService.updateCart(1, 2, 1));
+        System.out.println(cartService.updateCart(1, 2, 3));
     }
 
     @Test

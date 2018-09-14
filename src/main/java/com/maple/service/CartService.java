@@ -14,7 +14,7 @@ public interface CartService {
      * @param userId
      * @return
      */
-    boolean saveCart(CartDTO cartDTO, Integer userId);
+    Integer saveCart(CartDTO cartDTO, Integer userId);
 
     /**
      * 删除购物车

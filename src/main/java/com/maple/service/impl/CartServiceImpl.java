@@ -22,7 +22,7 @@ public class CartServiceImpl implements CartService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean saveCart(CartDTO cartDTO, Integer userId) {
+    public Integer saveCart(CartDTO cartDTO, Integer userId) {
         // 转换
         Cart cart = new Cart(userId, cartDTO.getStockId(), cartDTO.getQuanlity());
         // 获取用户购物车列表
@@ -40,17 +40,18 @@ public class CartServiceImpl implements CartService {
 
         // 验证数量
         if (!validateSaveCart(cart.getStock(), cart.getQuanlity()))
-            return false;
+            return 0;
 
         if (flag) {
             // 已存在，更新
             int cartId = cart.getId();
             int quanlity = cart.getQuanlity();
-            return cartDao.updateCart(cartId, userId, quanlity) != null;
+            cartDao.updateCart(cartId, userId, quanlity);
         } else {
             // 新增购物车项目
-            return cartDao.saveCart(cart) != null;
+            cartDao.saveCart(cart);
         }
+        return cart.getId();
     }
 
     @Transactional(rollbackFor = Exception.class)
