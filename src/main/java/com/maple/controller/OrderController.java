@@ -72,4 +72,16 @@ public class OrderController {
             return ResultTemplate.getFreeResult(ResultCode.UNAUTHORIZED, "认证失败", null);
         }
     }
+
+    @DeleteMapping("/{id}")
+    public Result cancelOrder(HttpServletRequest request, @PathVariable("id") Integer id) {
+        String token = request.getHeader("access_token");
+        Map<String, Claim> claims = TokenUtil.verifyToken(token);
+        if(null != claims) {
+            int userId = claims.get("uid").asInt();
+            return ResultTemplate.getSuccessResult(orderService.cancelOrder(id, userId));
+        } else {
+            return ResultTemplate.getFreeResult(ResultCode.UNAUTHORIZED, "认证失败", null);
+        }
+    }
 }

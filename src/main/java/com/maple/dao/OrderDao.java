@@ -62,7 +62,7 @@ public interface OrderDao {
      * @param id
      * @return
      */
-    @Select("SELECT id,status,total,gmt_create AS createTime FROM maple_order WHERE user = #{userId}")
+    @Select("SELECT id,status,total,gmt_create AS createTime FROM maple_order WHERE user = #{userId} order by gmt_create DESC")
     @Results({
             // 必须定义 id = true 否则id = null
             @Result(property = "id", column = "id", id = true),
