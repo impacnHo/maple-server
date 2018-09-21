@@ -34,11 +34,7 @@ public interface ProductDao {
      *
      * @return
      */
-    @Select("SELECT product_num,name,sub_name,price FROM product")
-    @Results({
-            @Result(property = "productNum", column = "product_num"),
-            @Result(property = "subName", column = "sub_name")
-    })
+    @Select("SELECT product_num AS productNum,name,sub_name AS subName,price,lanch_date AS lanchDate FROM product AS p")
     List<Product> listProduct();
 
     /**
@@ -47,14 +43,9 @@ public interface ProductDao {
      * @param typeName
      * @return
      */
-    @Select("SELECT product_num,p.name,sub_name,price " +
+    @Select("SELECT product_num AS productNum,p.name,sub_name AS subName,price,lanch_date AS lanchDate " +
             "FROM product as p,product_type as pt " +
             "WHERE p.type_id = pt.id AND pt.name = #{typeName}")
-    @Results({
-            @Result(property = "productNum", column = "product_num"),
-            @Result(property = "name", column = "name"),
-            @Result(property = "subName", column = "sub_name")
-    })
     List<Product> listProductByTypeName(@Param("typeName") String typeName);
 
 
@@ -64,17 +55,12 @@ public interface ProductDao {
      * @param keyword
      * @return
      */
-    @Select("SELECT product_num,p.name,sub_name,price " +
+    @Select("SELECT product_num AS productNum,p.name,sub_name AS subName,price,lanch_date AS lanchDate " +
             "FROM product as p,brand as b " +
             "WHERE p.brand_id = b.id AND (p.name LIKE #{keyword} " +
             "OR p.sub_name LIKE #{keyword} " +
             "OR p.product_num LIKE #{keyword} " +
             "OR b.name LIKE #{keyword})")
-    @Results({
-            @Result(property = "productNum", column = "product_num"),
-            @Result(property = "name", column = "name"),
-            @Result(property = "subName", column = "sub_name")
-    })
     List<Product> listProductBySearch(@Param("keyword") String keyword);
 
     /**

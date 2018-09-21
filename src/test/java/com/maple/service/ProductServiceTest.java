@@ -24,9 +24,8 @@ public class ProductServiceTest {
 
     @Test
     public void listProduct() {
-        List<ProductItemDTO> productItemDTOList = new ArrayList<>();
-        Page pageInfo = PageHelper.startPage(1,12);
-        productItemDTOList = productService.listProduct();
+        Page pageInfo = PageHelper.startPage(1,12, "lanch_date DESC");
+        List<ProductItemDTO> productItemDTOList = productService.listProduct();
         System.out.println(pageInfo.toString());
         System.out.println("=============");
         for (ProductItemDTO p : productItemDTOList) {
@@ -43,6 +42,7 @@ public class ProductServiceTest {
 
     @Test
     public void listPoroductByTypeName() throws Exception {
+        Page pageInfo = PageHelper.startPage(1,12, "lanch_date DESC");
         List<ProductItemDTO> productItemDTOList = productService.listProductByTypeName("鞋履");
         for (ProductItemDTO p : productItemDTOList) {
             System.out.println(p.toString());
@@ -51,6 +51,7 @@ public class ProductServiceTest {
 
     @Test
     public void listPoroductBySearch() throws Exception {
+        Page pageInfo = PageHelper.startPage(1,12, "lanch_date DESC");
         List<ProductItemDTO> productItemDTOList = productService.listProductBySearch("nike");
         for (ProductItemDTO p : productItemDTOList) {
             System.out.println(p.toString());

@@ -29,7 +29,7 @@ public class ProductDaoTest {
     public void listProduct() throws Exception {
         List<Product> list = new ArrayList<>();
         list = productDao.listProduct();
-        System.out.println("===Size: " + list.size() + "===");
+        //System.out.println("===Size: " + list.size() + "===");
         for (Product p : list) {
             System.out.println(p.toString());
         }

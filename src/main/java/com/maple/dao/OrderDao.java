@@ -62,11 +62,18 @@ public interface OrderDao {
      * @param id
      * @return
      */
-    @Select("SELECT id,status,total,gmt_create AS createTime FROM maple_order WHERE user = #{userId} order by gmt_create DESC")
+    @Select("<script>" +
+            "SELECT id,status,total,gmt_create AS createTime FROM maple_order " +
+            "WHERE user = #{userId} " +
+            "<if test='status != null'>" +
+            "AND status = #{status} " +
+            "</if>" +
+            "order by gmt_create DESC" +
+            "</script>")
     @Results({
             // 必须定义 id = true 否则id = null
             @Result(property = "id", column = "id", id = true),
             @Result(property = "orderItems", column = "id", many = @Many(select = "com.maple.dao.OrderItemDao.listOrderItemByOrderId"))
     })
-    List<OrderDTO> listOrder(@Param("userId") Integer id);
+    List<OrderDTO> listOrder(@Param("userId") Integer id, @Param("status") Integer status);
 }

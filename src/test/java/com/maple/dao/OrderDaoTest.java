@@ -31,7 +31,7 @@ public class OrderDaoTest {
 
     @Test
     public void listOrderTest() {
-        List<OrderDTO> orderDTOList = orderDao.listOrder(1);
+        List<OrderDTO> orderDTOList = orderDao.listOrder(1, 1);
         for (OrderDTO orderDTO : orderDTOList) {
             System.out.println(orderDTO.toString());
         }

@@ -53,7 +53,7 @@ public interface OrderService {
      * @param userId
      * @return
      */
-    List<OrderDTO> listOrder(Integer userId);
+    List<OrderDTO> listOrder(Integer userId, Integer status);
 
     /**
      * 订单详情

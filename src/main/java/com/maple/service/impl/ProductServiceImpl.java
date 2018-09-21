@@ -34,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
 
         // pass
         for (Product p : productList) {
-            productItemDTO = new ProductItemDTO(p.getProductNum(), p.getName(), p.getSubName(), p.getPrice());
+            productItemDTO = new ProductItemDTO(p.getProductNum(), p.getName(), p.getSubName(), p.getPrice(), p.getLanchDate());
             productItemDTOList.add(productItemDTO);
         }
         return productItemDTOList;
@@ -46,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
         List<ProductItemDTO> productItemDTOList = new ArrayList<>();
         ProductItemDTO productItemDTO;
         for (Product p : productList) {
-            productItemDTO = new ProductItemDTO(p.getProductNum(), p.getName(), p.getSubName(), p.getPrice());
+            productItemDTO = new ProductItemDTO(p.getProductNum(), p.getName(), p.getSubName(), p.getPrice(), p.getLanchDate());
             productItemDTOList.add(productItemDTO);
         }
         return productItemDTOList;
@@ -59,7 +59,7 @@ public class ProductServiceImpl implements ProductService {
         List<ProductItemDTO> productItemDTOList = new ArrayList<>();
         ProductItemDTO productItemDTO;
         for (Product p : productList) {
-            productItemDTO = new ProductItemDTO(p.getProductNum(), p.getName(), p.getSubName(), p.getPrice());
+            productItemDTO = new ProductItemDTO(p.getProductNum(), p.getName(), p.getSubName(), p.getPrice(), p.getLanchDate());
             productItemDTOList.add(productItemDTO);
         }
         return productItemDTOList;

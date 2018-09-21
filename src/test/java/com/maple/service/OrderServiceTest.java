@@ -39,7 +39,7 @@ public class OrderServiceTest {
 
     @Test
     public void listOrder() {
-        List<OrderDTO> orderDTOS = orderService.listOrder(1);
+        List<OrderDTO> orderDTOS = orderService.listOrder(1, null);
         for(OrderDTO orderDTO : orderDTOS) {
             System.out.println(orderDTO.toString());
         }

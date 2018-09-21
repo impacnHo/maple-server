@@ -2,6 +2,7 @@ package com.maple.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 商品列表中的商品项
@@ -12,15 +13,17 @@ public class ProductItemDTO implements Serializable {
     private String name;
     private String subName;
     private BigDecimal price;
+    private Date date;
 
     public ProductItemDTO() {
     }
 
-    public ProductItemDTO(String productNum, String name, String subName, BigDecimal price) {
+    public ProductItemDTO(String productNum, String name, String subName, BigDecimal price, Date date) {
         this.productNum = productNum;
         this.name = name;
         this.subName = subName;
         this.price = price;
+        this.date = date;
     }
 
     public String getProductNum() {
@@ -55,6 +58,14 @@ public class ProductItemDTO implements Serializable {
         this.price = price;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "ProductItemDTO{" +
@@ -62,6 +73,7 @@ public class ProductItemDTO implements Serializable {
                 ", name='" + name + '\'' +
                 ", subName='" + subName + '\'' +
                 ", price=" + price +
+                ", date=" + date +
                 '}';
     }
 }

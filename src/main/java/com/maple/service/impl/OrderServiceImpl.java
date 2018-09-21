@@ -139,8 +139,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderDTO> listOrder(Integer userId) {
-        return orderDao.listOrder(userId);
+    public List<OrderDTO> listOrder(Integer userId, Integer status) {
+        return orderDao.listOrder(userId, status);
     }
 
     @Override

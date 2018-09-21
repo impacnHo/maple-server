@@ -36,13 +36,15 @@ public class OrderController {
     }
 
     @GetMapping("/")
-    public Result listOrder(HttpServletRequest request, @RequestParam(defaultValue = "1") int page) {
+    public Result listOrder(HttpServletRequest request,
+                            @RequestParam(defaultValue = "1") int page,
+                            @RequestParam(defaultValue = "1") int status) {
         String token = request.getHeader("access_token");
         Map<String, Claim> claims = TokenUtil.verifyToken(token);
         if (null != claims) {
             int userId = claims.get("uid").asInt();
             Page pageInfo = PageHelper.startPage(page, 12);
-            List<OrderDTO> orderDTOList = orderService.listOrder(userId);
+            List<OrderDTO> orderDTOList = orderService.listOrder(userId, status);
             return ResultTemplate.getSuccessResult(String.valueOf(pageInfo.getPages()), orderDTOList);
         } else {
             return ResultTemplate.getFreeResult(ResultCode.UNAUTHORIZED, "认证失败", null);
@@ -77,7 +79,7 @@ public class OrderController {
     public Result cancelOrder(HttpServletRequest request, @PathVariable("id") Integer id) {
         String token = request.getHeader("access_token");
         Map<String, Claim> claims = TokenUtil.verifyToken(token);
-        if(null != claims) {
+        if (null != claims) {
             int userId = claims.get("uid").asInt();
             return ResultTemplate.getSuccessResult(orderService.cancelOrder(id, userId));
         } else {
