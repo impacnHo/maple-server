@@ -65,7 +65,7 @@ public interface OrderDao {
     @Select("<script>" +
             "SELECT id,status,total,gmt_create AS createTime FROM maple_order " +
             "WHERE user = #{userId} " +
-            "<if test='status != null'>" +
+            "<if test='status != -1'>" +
             "AND status = #{status} " +
             "</if>" +
             "order by gmt_create DESC" +
